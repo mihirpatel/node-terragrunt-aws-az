@@ -13,7 +13,7 @@ RUN echo "Terraform: ${TERRAFORM}, Terragrunt: ${TERRAGRUNT}, AZURE: ${AZURE}"
 RUN apk add --no-cache --virtual=build gcc libffi-dev musl-dev openssl-dev make python3-dev linux-headers
 RUN pip --no-cache-dir install virtualenv && python -m virtualenv /azure-cli
 RUN /azure-cli/bin/python -m pip --no-cache-dir install azure-cli==${AZURE}
-RUN alias az="/azure-cli/bin/python -m azure.cli"
+RUN echo -en '#!/usr/bin/env bash\n/azure-cli/bin/python -m azure.cli "$@"' > /usr/bin/az && chmod u+x /usr/bin/az
 RUN apk del build
 
 WORKDIR /apps
