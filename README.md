@@ -7,11 +7,11 @@ Azure CLI: https://github.com/Azure/azure-cli/issues/8863
 ```
 # Uses base image mihirpatel/node-terragrunt-aws:${TERRAFORM}-${TERRAGRUNT}, so make sure base image is built with required versions
 # Set Arguments
-TERRAGRUNT=0.25.2
-TERRAFORM=0.13.4
-AZURE=2.14.2
+TERRAGRUNT=0.39.2
+TERRAFORM=1.3.3
+AZURE=2.41.0
 image="mihirpatel/node-terragrunt-aws-az"
-tag="12-alpine-${TERRAFORM}-${TERRAGRUNT}-${AZURE}"
+tag="14-bullseye-${TERRAFORM}-${TERRAGRUNT}-${AZURE}"
 
 # Build
 docker build --build-arg TERRAGRUNT=${TERRAGRUNT} --build-arg TERRAFORM=${TERRAFORM} --build-arg AZURE=${AZURE} --no-cache -t ${image}:${tag} .
